@@ -27,10 +27,26 @@ exports.find_one = (req, res) => {
         })
 }
 
+exports.checkAlias = (req, res) => {
+    let alias = req.params.alias;
+    Answer.findOne({alias: alias})
+        .then(data => {
+            if(data) {
+                return res.status(201).send({message: 'Alias repetido'});
+            } else {
+                return res.status(200).send();
+            }
+        })
+        .catch(err => {return res.status(500).send({message: 'Internal server error'})})
+}
+
 exports.create = (req, res) => {
     let newAnswer = new Answer({
-        student: req.body.student,
-        answers: req.body.answers
+        alias: req.body.alias,
+        answers: req.body.answers,
+        paralelo: req.body.paralelo,
+        age: req.body.age,
+        sex: req.body.sex
     })
     newAnswer.save()
         .then(data => {

@@ -2,7 +2,10 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let schema = new Schema({
-    student: String,
+    alias: String,
+    sex: String,
+    age: Number,
+    paralelo: String,
     answers: { type: [Number] }
 },
     { timestamps: true }
