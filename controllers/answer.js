@@ -26,20 +26,20 @@ exports.find_one = (req, res) => {
             res.status(500).send({ mmessage: err.message || "Error retrieving answer with id=" + id })
         })
 }
-
+/*
 exports.checkAlias = (req, res) => {
     let alias = req.params.alias;
     Answer.findOne({alias: alias})
         .then(data => {
             if(data) {
-                return res.status(201).send({message: 'Alias repetido'});
+                return res.status(400).send({message: 'Alias repetido'});
             } else {
                 return res.status(200).send();
             }
         })
         .catch(err => {return res.status(500).send({message: 'Internal server error'})})
 }
-
+*/
 exports.create = (req, res) => {
     let newAnswer = new Answer({
         alias: req.body.alias,
