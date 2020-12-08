@@ -2,14 +2,14 @@
   "name": "server-tesis",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
   "author": "cristian",
-  "license": "ISC",
   "dependencies": {
+    "license": "ISC",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
