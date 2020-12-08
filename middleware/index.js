@@ -1,4 +1,4 @@
-const authJwt = require("./authJwt");
+const authJwt = require("./authMiddleware");
 
 module.exports = {
     authJwt
