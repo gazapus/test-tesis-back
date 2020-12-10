@@ -4,7 +4,7 @@ let Schema = mongoose.Schema;
 let schema = new Schema({
     question: String,
     options: { type: [String] },
-    locus: Number,
+    locus: String,
     index: Number
 });
 
