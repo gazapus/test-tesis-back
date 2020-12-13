@@ -1,7 +1,7 @@
-var Answer = require('../models/answer');
+var AnswerEmbu = require('../models/answerEmbu');
 
 exports.find_all = (req, res) => {
-    Answer.find({})
+    AnswerEmbu.find({})
         .then(data => {
             res.status(200).send(data)
         })
@@ -14,7 +14,7 @@ exports.find_all = (req, res) => {
 
 exports.find_one = (req, res) => {
     const id = req.params.id;
-    Answer.findById(id)
+    AnswerEmbu.findById(id)
         .then(data => {
             if (data) {
                 res.status(200).send(data);
@@ -23,30 +23,15 @@ exports.find_one = (req, res) => {
             }
         })
         .catch(err => {
-            res.status(500).send({ message: err.message || "Error retrieving answer with id=" + id })
+            res.status(500).send({ mmessage: err.message || "Error retrieving answer with id=" + id })
         })
-}
-
-exports.checkAlias = (req, res) => {
-    let alias = req.params.alias;
-    Answer.findOne({alias: alias})
-        .then(data => {
-            if(data) {
-                return res.status(200).send({message: 'Alias existente'});
-            } else {
-                return res.status(400).send({message: 'Alias no existe'});
-            }
-        })
-        .catch(err => {return res.status(500).send({message: 'Internal server error'})})
-}
+} 
 
 exports.create = (req, res) => {
-    let newAnswer = new Answer({
+    let newAnswer = new AnswerEmbu({
         alias: req.body.alias,
         answers: req.body.answers,
-        paralelo: req.body.paralelo,
-        age: req.body.age,
-        sex: req.body.sex
+        results: req.body.results
     })
     newAnswer.save()
         .then(data => {
@@ -61,7 +46,7 @@ exports.create = (req, res) => {
 
 exports.delete = (req, res) => {
     let id = req.params.id;
-    Answer.findByIdAndRemove(id)
+    AnswerEmbu.findByIdAndRemove(id)
         .then(data => {
             if (data) {
                 res.status(200).send({ message: 'Answer was deleted successfully' })
@@ -77,7 +62,7 @@ exports.delete = (req, res) => {
 }
 
 exports.delete_all = (req, res) => {
-    Answer.deleteMany({})
+    AnswerEmbu.deleteMany({})
         .then(data => {
             res.status(200).send({ message: `${data.deletedCount} answers were deleted successfully` })
         })

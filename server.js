@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const answerRoute = require('./routes/answer');
+const answerEmbuRoute = require('./routes/answerEmbu');
 const questionRoute = require('./routes/question');
 const authRoutes = require('./routes/auth');
 const headerMiddleware = require('./middleware/header');
@@ -42,6 +43,7 @@ app.use(headerMiddleware);
 app.use('/api/answer', answerRoute);
 app.use('/api/question', questionRoute);
 app.use('/api/auth', authRoutes);
+app.use('/api/answerEmbu', answerEmbuRoute);
 
 app.get('*', function (req, res) {
     res.status(404).send({ message: 'Route not found' });
