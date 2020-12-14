@@ -32,14 +32,14 @@ exports.check = (req, res) => {
     const alias = req.params.alias;
     AnswerEmbu.find({alias: alias})
         .then(data => {
-            if (data) {
-                res.status(200).send(data);
+            if (data.length > 0) {
+                res.status(200).send({ message: "Found answer with alias " + alias });
             } else {
                 res.status(404).send({ message: "Not found answer with alias " + alias })
             }
         })
         .catch(err => {
-            res.status(500).send({ mmessage: err.message || "Error retrieving answer with alias=" + alias })
+            res.status(500).send({ message: err.message || "Error retrieving answer with alias=" + alias })
         })
 } 
 
