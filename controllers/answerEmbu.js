@@ -27,6 +27,22 @@ exports.find_one = (req, res) => {
         })
 } 
 
+
+exports.check = (req, res) => {
+    const alias = req.params.alias;
+    AnswerEmbu.find({alias: alias})
+        .then(data => {
+            if (data) {
+                res.status(200).send(data);
+            } else {
+                res.status(404).send({ message: "Not found answer with alias " + alias })
+            }
+        })
+        .catch(err => {
+            res.status(500).send({ mmessage: err.message || "Error retrieving answer with alias=" + alias })
+        })
+} 
+
 exports.create = (req, res) => {
     let newAnswer = new AnswerEmbu({
         alias: req.body.alias,
